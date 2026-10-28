@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+.AppleDouble
+
+# Local configuration / credentials
+.env
+.env.*
+*.pem
+*.key
+
+# Editor files
+.idea/
+.vscode/
+
+# Build or exported packages
+*.crx
+*.zip
+node_modules/
+coverage/
+dist/

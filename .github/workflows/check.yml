@@ -1,0 +1,25 @@
+name: Source checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JavaScript syntax
+        run: |
+          node --check background.js
+          node --check content.js
+          node --check popup.js
+      - name: Validate Chrome manifest and referenced files
+        run: |
+          node -e "const fs=require('node:fs'); const m=JSON.parse(fs.readFileSync('manifest.json','utf8')); if(m.manifest_version!==3) throw Error('Manifest V3 is required'); for(const f of ['popup.html','popup.css','popup.js','background.js','content.js','icon16.png','icon48.png','icon128.png']) {if(!fs.existsSync(f)) throw Error('Missing '+f)}; if(!/^\d+\.\d+\.\d+$/.test(m.version)) throw Error('Invalid version'); console.log('Manifest version:',m.version)"

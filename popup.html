@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页面每分钟滚到底</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="container">
+    <h1>页面每分钟滚到底</h1>
+    <p id="page" class="page">正在读取当前页面…</p>
+    <div class="setting">
+      <div>
+        <div class="label">当前页面自动滚动</div>
+        <div id="status" class="status">正在检查…</div>
+      </div>
+      <button id="toggle" type="button" role="switch" aria-checked="false" aria-label="当前页面自动滚动" disabled>
+        <span class="thumb"></span>
+      </button>
+    </div>
+    <div class="interval">滚动间隔：每 1 分钟，直接到最下方</div>
+    <button id="now" class="now" type="button" disabled>立即滚到底部</button>
+    <p class="help">所有页面默认关闭。只为当前网址开启；同一网址开多个标签页时都会生效，刷新后仍保留设置。</p>
+    <p id="error" class="error" hidden></p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

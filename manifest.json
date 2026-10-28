@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "页面每分钟滚到底",
+  "version": "1.1.0",
+  "description": "默认关闭，按页面地址独立开启；开启后每分钟自动滚动到页面最下方。",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "页面每分钟滚到底",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ]
+}
